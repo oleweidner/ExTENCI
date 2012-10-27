@@ -13,9 +13,9 @@ arguments = --time  -x lambda_virus -U longreads.fq -S result.sam
 should_transfer_files = YES
 WhenToTransferOutput = ON_EXIT
 
-output = simple_bowtie.out
-error  = simple_bowtie.err
-log    = simple_bowtie.log
+output = simple_bowtie_$(cluster).out
+error  = simple_bowtie_$(cluster).err
+log    = simple_bowtie_$(cluster).log
 
 notification = Always
 

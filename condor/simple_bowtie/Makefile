@@ -2,9 +2,9 @@
 . PHONY: clean, submit, runlocal
 
 clean:
-	rm -vf simple_bowtie.out
-	rm -vf simple_bowtie.err
-	rm -vf simple_bowtie.log
+	rm -vf simple_bowtie_*.out
+	rm -vf simple_bowtie_*.err
+	rm -vf simple_bowtie_*.log
 
 submit:
 	condor_submit simple_bowtie.condor
