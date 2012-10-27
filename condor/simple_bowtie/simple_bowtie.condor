@@ -3,16 +3,16 @@ universe = vanilla
 # requirements is an expression to specify machines that can run jobs
 requirements = (FileSystemDomain != "") && (Memory >= 1) && (Arch == "X86_64")
 
-transfer_input_files = bowtie2, bowtie2-align
+transfer_input_files  = bowtie2, bowtie2-align, longreads.fq, lambda_virus.1.bt2, lambda_virus.2.bt2, lambda_virus.3.bt2, lambda_virus.4.bt2, lambda_virus.rev.1.bt2, lambda_virus.rev.2.bt2
+transfer_output_files = result.sam
 
 executable = ./bowtie2
 
-#arguments = job.in
+arguments = --time  -x lambda_virus -U longreads.fq -S result.sam
 
 should_transfer_files = YES
 WhenToTransferOutput = ON_EXIT
 
-#input = job.in
 output = simple_bowtie.out
 error  = simple_bowtie.err
 log    = simple_bowtie.log
