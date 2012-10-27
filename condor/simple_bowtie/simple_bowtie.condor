@@ -1,7 +1,9 @@
 universe = vanilla
 
-# requirements is an expression to specify machines that can run jobs
-requirements = (FileSystemDomain != "") && (Memory >= 1) && (Arch == "X86_64")
+# specifying what project to charge to is required
++ProjectName = "TG-MCB090174"
++SiteList    = "FNAL_FERMIGRID, cinvestav, SPRACE, NYSGRID_CORNELL_NYS1, Purdue-Steele, MIT_CMS_CE2, SWT2_CPB, AGLT2_CE_2, UTA_SWT2, GridUNESP_CENTRAL, USCMS-FNAL-WC1-CE3"
+requirements = (FileSystemDomain != "gw68.quarry.iu.teragrid.org") && (Memory >= 1) && (Arch == "X86_64") && (stringListMember(GLIDEIN_ResourceName,SiteList) == True)
 
 transfer_input_files  = bowtie2, bowtie2-align, longreads.fq, lambda_virus.1.bt2, lambda_virus.2.bt2, lambda_virus.3.bt2, lambda_virus.4.bt2, lambda_virus.rev.1.bt2, lambda_virus.rev.2.bt2
 transfer_output_files = result.sam
@@ -18,7 +20,5 @@ error  = simple_bowtie_$(cluster).err
 log    = simple_bowtie_$(cluster).log
 
 notification = Always
-
-+ProjectName = "TG-MCB090174"
 
 queue
