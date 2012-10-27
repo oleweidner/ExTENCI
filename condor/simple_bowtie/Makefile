@@ -1,7 +1,13 @@
 
-. PHONY: clean 
+. PHONY: clean, submit, runlocal
 
 clean:
-	rm simple_bowtie.out
-	rm simple_bowtie.err
-	rm simple_bowtie.log 
+	rm -vf simple_bowtie.out
+	rm -vf simple_bowtie.err
+	rm -vf simple_bowtie.log
+
+submit:
+	condor_submit simple_bowtie.condor
+
+runlocal:
+	./bowtie2 --time  -x lambda_virus -U longreads.fq -S result.sam
