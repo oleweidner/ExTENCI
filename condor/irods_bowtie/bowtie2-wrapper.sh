@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # This is were the iRods data lives
-$OSG_DATA_HOME=$OSG_DATA/osg/irods/oweidner
+OSG_DATA_HOME=$OSG_DATA/osg/irods/oweidner
+
+ls $OSG_DATA_HOME
 
 echo "Running on site: $OSG_SITE_NAME"
 echo

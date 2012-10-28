@@ -2,7 +2,7 @@ universe = vanilla
 
 # specifying what project to charge to is required
 +ProjectName = "TG-MCB090174"
-+SiteList = "FNAL_FERMIGRID, cinvestav, SPRACE, NYSGRID_CORNELL_NYS1, Purdue-Steele, MIT_CMS_CE2, SWT2_CPB, AGLT2_CE_2, UTA_SWT2, GridUNESP_CENTRAL, USCMS-FNAL-WC1-CE3"
++SiteList = "UFlorida-SSERC, BNL_ATLAS_2, FNAL_FERMIGRID, SPRACE, NYSGRID_CORNELL_NYS1, Purdue-Steele, MIT_CMS_CE2, UTA_SWT2, SWT2_CPB, AGLT2_CE_2, USCMS-FNAL-WC1-CE3"
 requirements = (FileSystemDomain != "gw68.quarry.iu.teragrid.org") && (Memory >= 1) && (Arch == "X86_64") && (stringListMember(GLIDEIN_ResourceName,SiteList) == True)
 
 # stage in executable (the standard condor way)
