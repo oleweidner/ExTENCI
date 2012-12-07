@@ -10,9 +10,6 @@ BASEPATH = "/home/oweidner/ExTENCI/condor/irods_bowtie/"
 def main():
     
     try:
-        # add extra Condor options as URL query parametersls /TG-MCB090174
-        js = saga.job.Service("condor://localhost?WhenToTransferOutput=ON_EXIT&should_transfer_files=YES&notification=Always")
-
         # describe our job
         jd = saga.job.Description()
 
@@ -25,6 +22,8 @@ def main():
 
         # define allocation (Condor : +Project)
         jd.project = 'TG-MCB090174'
+        
+        # This is equivalent to +SiteList = "xyz"
         jd.candidate_hosts = ['UFlorida-SSERC', 'BNL_ATLAS_2', 'UFlorida-SSERC', 
           'BNL_ATLAS_2', 'FNAL_FERMIGRID', 'SPRACE', 'NYSGRID_CORNELL_NYS1', 
           'Purdue-Steele', 'MIT_CMS_CE2', 'UTA_SWT2', 'SWT2_CPB', 'AGLT2_CE_2', 
@@ -34,22 +33,25 @@ def main():
         jd.file_transfer = ['%s/bowtie2 > bowtie2' % BASEPATH, 
                             '%s/bowtie2-align > bowtie2-align' % BASEPATH]
 
-        myjob = js.create_job(jd)
+        # add extra Condor options as URL query parametersls /TG-MCB090174
+        osg = saga.job.Service("condor://localhost?WhenToTransferOutput=ON_EXIT&should_transfer_files=YES&notification=Always")
 
-        print "Job ID    : %s" % (myjob.jobid)
-        print "Job State : %s" % (myjob.get_state())
+        bowtie_job = osg.create_job(jd)
+
+        print "Job ID    : %s" % (bowtie_job.jobid)
+        print "Job State : %s" % (bowtie_job.get_state())
 
         print "\n...starting job...\n"
-        myjob.run()
+        bowtie_job.run()
 
-        print "Job ID    : %s" % (myjob.jobid)
-        print "Job State : %s" % (myjob.get_state())
+        print "Job ID    : %s" % (bowtie_job.jobid)
+        print "Job State : %s" % (bowtie_job.get_state())
 
         print "\n...waiting for job...\n"
-        myjob.wait()
+        bowtie_job.wait()
 
-        print "Job State : %s" % (myjob.get_state())
-        print "Exitcode  : %s" % (myjob.exitcode)
+        print "Job State : %s" % (bowtie_job.get_state())
+        print "Exitcode  : %s" % (bowtie_job.exitcode)
 
     except saga.Exception, ex:
         print "An error occured during job execution: %s" % (str(ex))
