@@ -31,6 +31,9 @@ for rs_key in rs_keys:
     sys.stdout.write("%-21s" % rs_key)
 print('TOTAL \n')
 
+# convert keys to int
+for 
+
 for fs_key in fs_keys:
     sys.stdout.write('%-12s  ' % fs_key)
     total = 0.0
