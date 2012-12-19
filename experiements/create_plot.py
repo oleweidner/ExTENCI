@@ -10,7 +10,7 @@ dataset = dict()
 
 # Read and re-format the data from csv file
 
-with open('results.csv', 'rb') as f:
+with open(sys.argv[1], 'rb') as f:
     reader = csv.DictReader(f)
     try:
         for row in reader:
@@ -32,7 +32,6 @@ for rs_key in rs_keys:
 print('TOTAL \n')
 
 # convert keys to int
-for 
 
 for fs_key in fs_keys:
     sys.stdout.write('%-12s  ' % fs_key)
