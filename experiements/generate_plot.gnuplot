@@ -1,5 +1,5 @@
 set terminal postscript enhanced color
-set output '| ps2pdf - results-02.pdf'
+set output '| ps2pdf - results-01.pdf'
 
 
 set boxwidth 0.75 absolute
@@ -14,4 +14,4 @@ set yrange [ 0.00000 : 3000 ] noreverse nowriteback
 set ylabel "Time (s)"
 set xlabel "Data volume"
 
-plot for [COL=2:10] 'results/results-02.dat' using COL:xticlabels(1) title columnheader
+plot for [COL=2:10] 'results/results-01.dat' using COL:xticlabels(1) title columnheader
