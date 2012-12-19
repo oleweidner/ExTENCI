@@ -10,7 +10,7 @@ def irods_repl(target, file):
     rc = proc.wait()
     td = time.time() - t1
     if rc != 0:
-        return 'F'
+        return '-'
     else:
         return str(td)
 
@@ -39,9 +39,9 @@ def main():
 
              duration = irods_repl(location, filename)
 
-             result = "%s;%s;%s;%s\n" % (timestamp, bucketsize, location, duration)
+             result = "%s,%s,%s,%s\n" % (timestamp, bucketsize, location, duration)
              print result
-             with open("results_repl.dat", "a") as myfile:
+             with open("results-02.csv", "a") as myfile:
                  myfile.write(result)
 
 
