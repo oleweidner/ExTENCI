@@ -1,5 +1,5 @@
 set terminal postscript enhanced color
-set output '| ps2pdf - results.pdf'
+set output '| ps2pdf - results-02.pdf'
 
 
 set boxwidth 0.75 absolute
@@ -10,8 +10,8 @@ set style histogram rowstacked title  offset character 0, 0, 0
 set style data histograms
 
 set title "Replication times for different data volumes \n from central iRODS server to osgGridFtpGroup sites" 
-set yrange [ 0.00000 : 2600 ] noreverse nowriteback
+set yrange [ 0.00000 : 3000 ] noreverse nowriteback
 set ylabel "Time (s)"
 set xlabel "Data volume"
 
-plot for [COL=2:10] 'results.dat' using COL:xticlabels(1) title columnheader
+plot for [COL=2:10] 'results/results-02.dat' using COL:xticlabels(1) title columnheader
