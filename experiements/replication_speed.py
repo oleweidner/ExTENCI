@@ -44,7 +44,7 @@ def main():
 
             result = "%s,%s,%s,%s\n" % (timestamp, bucketsize, location, duration)
             print result
-            with open("results-03.csv", "a") as myfile:
+            with open("results-04.csv", "a") as myfile:
                 myfile.write(result)
 
 
