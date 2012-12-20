@@ -1,6 +1,6 @@
 #!/bin/python
 
-import sys, time, subprocess
+import sys, time, subprocess, random
 
 def irods_repl(target, file):
     t1 = time.time()
@@ -28,21 +28,24 @@ def main():
                    'AGLT2_CE_2_FTP',
                    'USCMS-FNAL-WC1-CE3_F']
 
+    random.shuffle(bucketsizes)
+
     # Output is of the form:
     #   bucketsize;location;time
 
     for bucketsize in bucketsizes:
-         for location in locations:
-             timestamp = time.time()
-             filename = "/osg/home/oweidner/speedtest/bucket_%sM.dat" % bucketsize
-             print "Replicating %s to %s" % (filename, location)
+        random.shuffle(locations)     
+        for location in locations:
+            timestamp = time.time()
+            filename = "/osg/home/oweidner/speedtest/bucket_%sM.dat" % bucketsize
+            print "Replicating %s to %s" % (filename, location)
 
-             duration = irods_repl(location, filename)
+            duration = irods_repl(location, filename)
 
-             result = "%s,%s,%s,%s\n" % (timestamp, bucketsize, location, duration)
-             print result
-             with open("results-03.csv", "a") as myfile:
-                 myfile.write(result)
+            result = "%s,%s,%s,%s\n" % (timestamp, bucketsize, location, duration)
+            print result
+            with open("results-03.csv", "a") as myfile:
+                myfile.write(result)
 
 
 if __name__ == "__main__":
